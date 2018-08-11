@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>tax</title>
+</head>
+
+<body>
+    <h1>tax計算</h1>
+    <div id="app">
+        <p>税抜価格:<input type="text" v-model="taxExclusion"></p>
+        <p>税込価格:<input type="text" v-model="taxIncluded"></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                taxExclusion: '0'
+            },
+            computed: {
+                taxIncluded: {
+                    get: function() {
+                        return parseInt(this.taxExclusion * 1.08);
+                    },
+                    set: function(val) {
+                        this.taxExclusion = Math.ceil(val / 1.08);
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
